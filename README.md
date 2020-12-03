@@ -46,13 +46,13 @@ If you have calculated chemical shieldings using a different density functional 
     predict_shieldings = ensemble_net(atom='C', dft='PBE', basis_set='STO-3G')
 
 Currently, we have trained nets for following density functionals:
-* LDA
-* PBE
-* PBE0
+* `LDA`
+* `PBE`
+* `PBE0`
 
 And basis sets:
-* STO-3G
-* 6-31G
+* `STO-3G`
+* `6-31G`
 
 Lastly, the advantage of using an ensemble net allows one to examine the uncertainty of prediction between the individual members to assess the quality of the prediction. By using the following argument:
 
