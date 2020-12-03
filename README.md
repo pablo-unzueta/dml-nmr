@@ -30,8 +30,16 @@ Source code can be viewed with the following command:
 # Usage
 
 ## Examples
+The main driver of these python scripts is `predict_shieldings.py` which acts on a directory of *Gaussian09* output or `.log` files. For example, calling `python predict_shieldings.py` in the `examples/predict/` directory will produce `.dml` files for each `.log` file.
+
+If you wish to examine the uncertainties of each prediction, you can use:
+
+    python predict_shieldings.py --std=True 
+
+which will produce another set files with the `.std` extension corresponding the standard deviation from the ensemble nets of each prediction.
+
 ### XYZ to AEV files
-Included in the `examples/` directory is a c++ executable to calculate the elements of the atomic environment vector (AEV). This can be used as a standalone module to generate AEVs for simple `.xyz` files.
+Included in the `examples/aev` directory is a c++ executable to calculate the elements of the atomic environment vector (AEV). This can be used as a standalone module to generate AEVs for simple `.xyz` files.
 
     methane.xyz ./xyz_to_aev > methane.aev
 
