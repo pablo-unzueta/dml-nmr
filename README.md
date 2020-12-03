@@ -31,11 +31,11 @@ Source code can be viewed with the following command:
 
 ## Examples
 ### XYZ to AEV files
-Included in the `examples/` directory is a c++ executable to calculate the elements of the atomic environment vector (AEV). This can be used a standalone module to generate AEVs for simple `.xyz` files.
+Included in the `examples/` directory is a c++ executable to calculate the elements of the atomic environment vector (AEV). This can be used as a standalone module to generate AEVs for simple `.xyz` files.
 
     methane.xyz ./xyz_to_aev > methane.aev
 
-The `methane.aev` file is included to quickly check if this working properly on your machine. Furthermore, the `./xyz_to_aev` is also called when using `predict_shieldings.py` for new NMR shielding predictions.
+The `methane.aev` file is also included to quickly check if this working properly on your machine. Furthermore, the `./xyz_to_aev` is also called when using `predict_shieldings.py` for new NMR shielding predictions.
 
  
 
