@@ -30,7 +30,7 @@ Source code can be viewed with the following command:
 # Usage
 
 ## Examples
-### .xyz to .aev
+### XYZ to AEV files
 
 ## Re-Training Neural Nets
 Neural networks were trained using the methods detailed in XXX-XXXX. If you'd like to re-train the neural networks, the pandas dataframe files are hosted on figshare.
