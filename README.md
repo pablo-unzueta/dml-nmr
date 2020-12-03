@@ -30,7 +30,9 @@ Source code can be viewed with the following command:
 # Usage
 
 ## Examples
-The main driver of these python scripts is `predict_shieldings.py` which acts on a directory of *Gaussian09* output or `.log` files. For example, calling `python predict_shieldings.py` in the `examples/predict/` directory will produce `.dml` files for each `.log` file.
+The main driver of these python scripts is `predict_shieldings.py` which acts on a directory of *Gaussian09* output or `.log` files. Using the following command in the `examples/predict/` directory will produce `.dml` files for each `.log` file.
+
+    python predict_shieldings.py
 
 If you wish to examine the uncertainties of each prediction, you can use:
 
