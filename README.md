@@ -11,7 +11,7 @@ This project was developed by Pablo Unzueta and Gregory Beran at UC Riverside. V
 * Scikit-Learn (>= 0.23.2)
 * Pandas (>= 1.1.3)
 
-DML-NMR python scripts are written for python3.7 or newer.
+DML-NMR python scripts are written for **python3.7** or newer.
 ## User Installation
 
 # Usage 
