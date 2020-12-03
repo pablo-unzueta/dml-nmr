@@ -13,6 +13,17 @@ This project was developed by Pablo Unzueta and Gregory Beran at UC Riverside. V
 
 DML-NMR python scripts are written for **python3.7** or newer.
 ## User Installation
+The preferred method of installation is through pip:
+
+    pip install -U dml-nmr
+
+or `conda`
+
+    conda install -c conda-forge dml-nmr
+
+Lastly, cloning this repo with
+
+    git clone https://github.com/pablo-unzueta/dml-nmr
 
 # Usage 
 ## Examples
