@@ -34,9 +34,9 @@ Source code can be viewed with the following command:
 
 ## Re-Training Neural Nets
 Neural networks were trained using the methods detailed in the publication. If you'd like to re-train the neural networks, then follow these steps.
-1. Download the pandas dataframe files hosted on figshare
+1. Download the pandas dataframe files hosted on [figshare](https://figshare.com/)
 2. Place these files in the `train/data/` directory
-3. Modify kfold_90_10.py training script
+3. Modify kfold_90_10.py training script with new training protocol
 4. Run using `python kfold_90_10.py > results.out`
 
 The new training weights are saved as `.h5` files. Move these files to the corresponding directory for your desired level of theory and basis set.
