@@ -39,7 +39,7 @@ Using **DML-NMR** is quite simple. The code simply acts on all *Gaussian09* outp
     predict_shieldings = ensemble_net(atom='C')
     predict_shieldings(current_dir)
 
-Will produce `.dml` files for each corresponding `.log` file containing the new PBE0/6-311+G(2d,p) shielding predictions for evey Carbon atom. Accepted atom types are `C` `H` `N` and `O`
+Will produce `.dml` files for each corresponding `.log` file containing the new PBE0/6-311+G(2d,p) shielding predictions for every carbon atom. Accepted atom types are `C` `H` `N` and `O`
 
 If you have calculated chemical shieldings using a different density functional or basis set, you can change the `ensemble_net()` function call:
 
@@ -54,17 +54,17 @@ And basis sets:
 * STO-3G
 * 6-31G
 
-Lastly, the advantage of using an ensemble net allows one to examine the uncertainty of predictions between the individual members to assess the quality of the prediction. By using the following argument:
+Lastly, the advantage of using an ensemble net allows one to examine the uncertainty of prediction between the individual members to assess the quality of the prediction. By using the following argument:
 
     predict_shieldings = ensemble_net(atom='C', std=True)
 
-another set of files with the `.std` extension will be produced corresponding to the standard deviation of each ensemble. Please refer to our (add link to paper) to examine the 95% confidence intervals of each prediction.
+another set of files with the `.std` extension will be produced corresponding to the standard deviation of each new shielding precition. Please refer to our paper(add link to paper) to examine the 95% confidence intervals of each prediction.
 
-If you have downloaded the source code from github, you can use driver `predict_shieldings.py` which acts on a directory of *Gaussian09* output or `.log` files. Using the following command in the `examples/predict/` directory will produce `.dml` files for each `.log` file.
+If you have downloaded the source code from github, you can use the driver `predict_shieldings.py` which acts on a directory of *Gaussian09* output or `.log` files. Using the following command in the `examples/predict/` directory will produce `.dml` files for each `.log` file.
 
     python predict_shieldings.py
 
-f you wish to examine the uncertainties of each prediction, you can use:
+If you wish to examine the uncertainties of each prediction, you can use:
 
     python predict_shieldings.py --std=True 
 
