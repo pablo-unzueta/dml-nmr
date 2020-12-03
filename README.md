@@ -1,2 +1,4 @@
 # dml-nmr
-Delta-Machine Learning (DML) python scripts for upcoming paper. 
+Delta-Machine Learning Nuclear Magnetic Resonance (DML-NMR) python scripts for upcoming paper. 
+
+# Installation
