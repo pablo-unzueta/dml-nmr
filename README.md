@@ -21,7 +21,8 @@ or `conda`
 
     conda install -c conda-forge dml-nmr
 
-Lastly, cloning this repo with
+## Source Code
+Source code can be viewed with the following command:
 
     git clone https://github.com/pablo-unzueta/dml-nmr
 
