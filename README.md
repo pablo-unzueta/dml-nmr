@@ -3,7 +3,6 @@ Delta-Machine Learning Nuclear Magnetic Resonance (**DML-NMR**) is a set of pyth
 
 This project was developed by Pablo Unzueta and Gregory Beran at UC Riverside. Visit our [group website](https://research.chem.ucr.edu/groups/beran/publications.html) for our full publication list.
 
-DML-NMR python scripts are written for **python3.7** or newer. 
 # Installation
 
 ## Dependencies
@@ -12,9 +11,13 @@ DML-NMR python scripts are written for **python3.7** or newer.
 * Scikit-Learn (>= 0.23.2)
 * Pandas (>= 1.1.3)
 
-# Usage
+DML-NMR python scripts are written for python3.7 or newer.
+## User Installation
 
-# Re-Training Neural Nets
+# Usage 
+## Examples
+
+## Re-Training Neural Nets
 
 # Citation
 Please cite XXX-XXXX if using this software
