@@ -2,7 +2,7 @@
 Delta-Machine Learning Nuclear Magnetic Resonance (**DML-NMR**) is a set of python scripts to rapidly predict isotropic chemical shieldings at the PBE0/6-311+G(2d,p) level of theory. DML-NMR relies on calculating an inexpensive chemical shielding using *Gaussian09* (or newer) in combination with these python scripts.
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/pablo-unzueta/dml-nmr/blob/main/images/nn_arch_and_ensemble_combined_large_font_cropped.svg">
+  <img src="https://github.com/pablo-unzueta/dml-nmr/blob/main/images/nn_arch_and_ensemble_combined_large_font_cropped.svg">
 </p>
 
 This project was developed by Pablo Unzueta and Gregory Beran at UC Riverside. Visit our [group website](https://research.chem.ucr.edu/groups/beran/publications.html) for our full publication list.
