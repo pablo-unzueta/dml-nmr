@@ -34,18 +34,18 @@ Source code can be viewed with the following command:
 # Usage
 
 ## Examples
-Using **DML-NMR** is quite simple. The code simply acts on all *Gaussian09* output or `.log` files. For example, in a directory containing all the NMR *Gaussian09* `.log` files calculated at the PBE0/6-31G level of theory and basis set.
+Using **DML-NMR** is quite simple. The code simply acts on all *Gaussian09* output or `.log` files. For example, in a directory containing all the NMR *Gaussian09* `.log` files calculated at the PBE0/6-31G level of theory and basis set:
 
     from dmlnmr import ensemble_net
     import os 
     current_dir = os.getcwd()
 
-    predict_shieldings = ensemble_net(atom='C')
-    predict_shieldings(current_dir)
+    predict_shieldings = ensemble_net(atom='C', directory=current_dir)
+    predict_shieldings.run()
 
-Will produce `.dml` files for each corresponding `.log` file containing the new PBE0/6-311+G(2d,p) shielding predictions for every carbon atom. Accepted atom types are `C` `H` `N` and `O`
+will produce `.dml` files for each corresponding `.log` file containing the new PBE0/6-311+G(2d,p) shielding predictions for every carbon atom. Accepted atom types are `C` `H` `N` and `O`
 
-If you have calculated chemical shieldings using a different density functional or basis set, you can change the `ensemble_net()` function call:
+If you have calculated chemical shieldings using a different density functional or basis set, you can change the arguments in the `ensemble_net()` function call:
 
     predict_shieldings = ensemble_net(atom='C', dft='PBE', basis_set='STO-3G')
 
@@ -84,17 +84,17 @@ The `methane.aev` file is also included to quickly check if this working properl
  
 
 
-## Re-Training Neural Nets
+< ## Re-Training Neural Nets
 Neural networks were trained using the methods detailed in the publication. If you'd like to re-train the neural networks, then follow these steps.
 1. Download the pandas dataframe files hosted on [figshare](https://figshare.com/)
 2. Place these files in the `train/data/` directory
 3. Modify kfold_90_10.py training script with new training protocol
 4. Run using `python kfold_90_10.py > results.out`
 
-The new training weights are saved as `.h5` files. Move these files to the corresponding directory for your desired level of theory and basis set.
+The new training weights are saved as `.h5` files. Move these files to the corresponding directory for your desired level of theory and basis set.>
 
 
 # Citation
 Please cite if using this software:
 
-    XXX-XXXX
+    Waiting for acceptance
