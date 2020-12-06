@@ -116,6 +116,15 @@ class ensemble_net:
     def gen_temp_atom_aev(self):
         '''
         '''
+        for filename in sorted(os.listdir(self.working_directory)):
+            if filename.endswith('.aev'):
+                temp_file = filename[:-4] + ".temp"
+
+                aev = np.genfromtxt(filename)
+
+                for atom_aev in aev:
+                    str(atom_aev[0]) == self.atom_type
+
 
     def log_to_xyz(self):
         
