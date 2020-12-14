@@ -120,10 +120,12 @@ class ensemble_net:
             if filename.endswith('.aev'):
                 temp_file = filename[:-4] + ".temp"
 
-                aev = np.genfromtxt(filename)
+                aev = np.genfromtxt(filename, delimiter=',')
 
-                for atom_aev in aev:
-                    str(atom_aev[0]) == self.atom_type
+                print(aev)
+
+                #for atom_aev in aev:
+                #    str(atom_aev[0]) == self.atom_type
 
 
     def log_to_xyz(self):
@@ -180,4 +182,5 @@ if __name__ == "__main__":
 
     predict_shieldings = ensemble_net(atom = 'C', directory=os.getcwd())
     predict_shieldings.xyz_to_aev('methane.xyz')
+    predict_shieldings.gen_temp_atom_aev()
 
