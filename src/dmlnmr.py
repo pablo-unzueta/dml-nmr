@@ -22,7 +22,8 @@ class ensemble_net:
         self.std = std
         self.working_directory = directory
         self.saved_models_dir = self.determine_weights_directory()
-        #self.model = self.load_weights()
+        self.model = self.load_weights()
+        self.get_shieldings_from_log()
 
     def determine_weights_directory(self):
         dft_dir = self.dft
@@ -88,7 +89,7 @@ class ensemble_net:
 
     #def predict_shieldings(self):
 
-    def get_shieldings(self):
+    def get_shieldings_from_log(self):
 
         search_term = self.atom_type + "    Isotropic"
 
@@ -96,7 +97,7 @@ class ensemble_net:
 
         for filename in sorted(os.listdir(self.working_directory)):
             if filename.endswith('.log'):
-                shift_file = filename[:-4] + ".shift"
+                shift_file = filename[:-4] + ".shifts"
 
                 with open(filename, 'r') as f:
                     with open(shift_file, 'w') as sf:
@@ -106,26 +107,38 @@ class ensemble_net:
                                 shieldings = line.split()
                                 sf.write(shieldings[4])
                                 sf.write('\n')
-    def xyz_to_aev(self, xyz):
+    def xyz_to_aev(self):
         '''
         XYZ to AEV using an inhouse c++ program. Need to find a better way to do this if it becomes popular
         '''
-        command = "./xyz_to_aev" + " " + xyz + " >" + xyz[:-4] + ".aev" 
+        command = "./xyz_to_aev" + " " + self.xyz + " >" + self.xyz[:-4] + ".aev" 
         subprocess.call(command, shell=True)
 
     def gen_temp_atom_aev(self):
         '''
         '''
+        temp_aev = []
         for filename in sorted(os.listdir(self.working_directory)):
             if filename.endswith('.aev'):
                 temp_file = filename[:-4] + ".temp"
 
                 aev = np.genfromtxt(filename, delimiter=',')
 
-                print(aev)
+                # Atom type Dictionary
+                atom_dict = {'C' : 6.0,
+                     'H' : 1.0,
+                     'N' : 15.0,
+                     'O' : 17.0}
+               
+                for vector in aev:
+                    if(vector[0] == atom_dict[self.atom_type]):
+                        #print(vector[1:385])
+                        temp_aev.append(vector[1:385])
 
                 #for atom_aev in aev:
                 #    str(atom_aev[0]) == self.atom_type
+                temp_aev = np.asarray(temp_aev)
+                np.savetxt(temp_file, temp_aev)
 
 
     def log_to_xyz(self):
@@ -133,6 +146,7 @@ class ensemble_net:
         for filename in sorted(os.listdir(self.working_directory)):
             if filename.endswith('.log'):
                 xyz_file = filename[:-4] + ".xyz"
+                self.xyz = xyz_file
 
                 # Get Number of Atoms
                 natoms_pattern = re.compile('NAtoms=')
@@ -144,28 +158,106 @@ class ensemble_net:
                         if match:
                            temp = line.split()
                            natoms = temp[1]
-                           # print(natoms)
+                           #print(natoms)
 
                 # Print XYZ Coords
                 with open(filename, 'r') as f:
-                    for line in f:
+                    lines = f.readlines()
+                    for index, line in enumerate(lines):
                         match = re.search(coords_pattern, line)
                         if match:
-                            coords = line[i + natoms].strip()
-                            print(coords)
+                            with open(xyz_file, 'w') as xyz_f:
+                                xyz_f.write(f"{natoms}\n")
+                                xyz_block = lines[index+5:index+14]
+                                for coord in xyz_block:
+                                    coord = coord.split()
+                                    xyz_f.write(f"{coord[1]}\t{coord[3]}\t{coord[4]}\t{coord[5]}\n")
+                                    #print(f"{coord[1]}\t{coord[3]}\t{coord[4]}\t{coord[5]}")
+                            #xyz_block = lines.split()
+                            #print(xyz_block)
+                            # print(f[index])
+
+    def calc_dml_nmr(self):
+        
+        for filename in sorted(os.listdir(self.working_directory)):
+            if filename.endswith('.temp'):
+                #print(filename)
+                dml_file = filename[:-5] + ".dml"
+                cheap_shielding_file = filename[:-5] + ".shifts"
+
+                self.cheap_shieldings = np.genfromtxt(cheap_shielding_file)
+                data = np.genfromtxt(filename)
+
+                # Need next line in case there is only 1 atom
+                # to avoid 0-D data
+                data = data.reshape((-1,384))
+            
+                ensemble_ml_corrs = self.model.predict(data)
+                ensemble_ml_corrs = np.asarray(ensemble_ml_corrs) 
+        
+                delta_correct = ensemble_ml_corrs[0]
+                ml_corrs = ensemble_ml_corrs[1]
+                
+                #print(delta_correct)
+                print(delta_correct)
+                        
+                dml_shifts = self.cheap_shieldings + delta_correct[:,0]
+        
+                
+                np.savetxt(dml_file, dml_shifts, fmt="%1.5f")
+                
+                if(self.std):
+                    std_file = filename[:-5] + ".std"
+                    std_corrs = np.std(ml_corrs, axis=0)
+
+                    #print(std_corrs)
+                    np.savetxt(std_file, std_corrs, fmt="%1.5f")
 
 
-                    
+
+#    def clean_up(self):
 
 
+    def print_end_call(self):
 
+        print('\n\n\n')
+        print('******************************************************')
+        print('\tDML-NMR Complete! Buy Pablo Coffee')
+        print('******************************************************')
+        print("""              
+                               (
+                                )     (
+                         ___...(-------)-....___
+                     .-""       )    (          ""-.
+               .-'``'|-._             )         _.-|
+              /  .--.|   `""---...........---""`   |
+             /  /    |                             |
+             |  |    |                             |
+              \  \   |                             |
+               `\ `\ |                             |
+                 `\ `|                             |
+                 _/ /\                             /
+                (__/  \                           /
+             _..---""` \                         /`""---.._
+          .-'           \                       /          '-.
+         :               `-.__             __.-'              :
+         :                  ) ""---...---"" (                 :
+          '._               `"--...___...--"`              _.'
+            \""--..__                              __..--""/
+             '._     ""-----.....______.....-----"     _.'
+                `""--..,,_____            _____,,..--""`
+                              `""------"`
+        """)
 
-
-
-
+        
 
 
     def run(self):
+        self.log_to_xyz()
+        self.xyz_to_aev()
+        self.gen_temp_atom_aev()
+        self.calc_dml_nmr()
+        self.print_end_call()
         #print('get_shieldings()')
         #print('consruct_aev()')
         #print('parse_aev_based on atom type')
@@ -173,14 +265,14 @@ class ensemble_net:
 
         return "Finished"
          
-
-
-
-
-        
 if __name__ == "__main__":
 
-    predict_shieldings = ensemble_net(atom = 'C', directory=os.getcwd())
-    predict_shieldings.xyz_to_aev('methane.xyz')
-    predict_shieldings.gen_temp_atom_aev()
+    predict_shieldings = ensemble_net(atom = 'C', directory=os.getcwd(), std=False)
+    predict_shieldings.run()
+    #predict_shieldings.log_to_xyz()
+    #predict_shieldings.get_shieldings_from_log()
+    #predict_shieldings.xyz_to_aev('methane.xyz')
+    #predict_shieldings.calc_dml_nmr()
+        #predict_shieldings.gen_temp_atom_aev()
+    #predict_shieldings.print_end_call()
 

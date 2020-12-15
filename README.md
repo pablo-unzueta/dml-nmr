@@ -58,11 +58,11 @@ And basis sets:
 * `STO-3G`
 * `6-31G`
 
-Lastly, the advantage of using an ensemble net allows one to examine the uncertainty of prediction between the individual members to assess the quality of the prediction. By using the following argument:
+Lastly, the advantage of using an ensemble net allows one to examine the uncertainty between the individual members to assess the quality of the prediction. By using the following argument:
 
     predict_shieldings = ensemble_net(atom='C', std=True)
 
-another set of files with the `.std` extension will be produced corresponding to the standard deviation of each new shielding precition. Please refer to our paper(add link to paper) to examine the 95% confidence intervals of each prediction.
+another set of files with the `.std` extension will be produced corresponding to the standard deviation of each new shielding prediction. Please refer to our paper(add link to paper) to examine the 95% confidence intervals per atom type.
 
 If you have downloaded the source code from github, you can use the driver `predict_shieldings.py` which acts on a directory of *Gaussian09* output or `.log` files. Using the following command in the `examples/predict/` directory will produce `.dml` files for each `.log` file.
 
@@ -73,6 +73,7 @@ If you wish to examine the uncertainties of each prediction, you can use:
     python predict_shieldings.py --std=True 
 
 which will produce another set files with the `.std` extension corresponding the standard deviation from the ensemble nets of each prediction.
+
 
 ### XYZ to AEV files
 Included in the `examples/aev` directory is a c++ executable to calculate the elements of the atomic environment vector (AEV). This can be used as a standalone module to generate AEVs for simple `.xyz` files.
