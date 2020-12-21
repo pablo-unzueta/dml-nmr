@@ -72,13 +72,13 @@ If you wish to examine the uncertainties of each prediction, you can use:
 
 which will produce another set files with the `.std` extension corresponding the standard deviation from the ensemble nets of each prediction.
 
-We suggest using PBE0/6-31G for the baseline calculation and have included the ensemble uncertainties for this model per atom type. If the NMR calculations become a significant bottleneck, one can opt of the cheaper PBE/6-31G calculations which are roughly 30% cheaper as discussed in the paper.
+We suggest using *PBE0/6-31G* for the baseline calculation and have included the ensemble uncertainties for this model per atom type. If the NMR calculations become a significant bottleneck, one can opt of the cheaper *PBE/6-31G* calculations which are roughly 30% cheaper as discussed in the paper.
 
  
 
 ### Carbon Shielding Error 95% Confidence Interval 
 | Stdev | PBE0/6-31G (ppm) | PBE/6-31G (ppm) |
-| ------------- | ------------- | ------------- |
+| :------------- | :-------------: | :-------------: |
 | < 0.25 | 1.0 | 1.0|
 | 0.25 - 0.5 | 1.4 | 1.5 |
 | 0.5 - 0.75 | 1.9 | 2.3 |
@@ -87,7 +87,7 @@ We suggest using PBE0/6-31G for the baseline calculation and have included the e
 
 
 ### XYZ to AEV Conversion
-The xyz to aev file conversion is carried out using the [torchani](https://github.com/aiqm/torchani/tree/master/torchani) python package. 
+The xyz to aev file conversion is carried out using the [torchani](https://github.com/aiqm/torchani) python package. 
  
 
 <!---
