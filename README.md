@@ -14,7 +14,7 @@ This project was developed by Pablo Unzueta and Gregory Beran at UC Riverside. V
 * Numpy (>= 1.13.3)
 * Scikit-Learn (>= 0.23.2)
 * Pandas (>= 1.1.3)
-* GCC (>= 9.3.0)
+* Torchani (>= 2.2) 
 
 DML-NMR python scripts are written for **python3.7** or newer.
 ## User Installation
@@ -22,9 +22,7 @@ The preferred method of installation is through `pip`:
 
     pip install -U dml-nmr
 
-or `conda`
-
-    conda install -c conda-forge dml-nmr
+or one can simply download the source code and specify the python path.
 
 ## Source Code
 Source code can be viewed with the following command:
@@ -74,14 +72,22 @@ If you wish to examine the uncertainties of each prediction, you can use:
 
 which will produce another set files with the `.std` extension corresponding the standard deviation from the ensemble nets of each prediction.
 
+We suggest using PBE0/6-31G for the baseline calculation and have included the ensemble uncertainties for this model per atom type. If the NMR calculations become a significant bottleneck, one can opt of the cheaper PBE/6-31G calculations which are roughly 30% cheaper as discussed in the paper.
 
-### XYZ to AEV files
-Included in the `examples/aev` directory is a c++ executable to calculate the elements of the atomic environment vector (AEV). This can be used as a standalone module to generate AEVs for simple `.xyz` files.
+ 
 
-    methane.xyz ./xyz_to_aev > methane.aev
+### Carbon Shielding Error 95% Confidence Interval 
+| Stdev | PBE0/6-31G (ppm) | PBE/6-31G (ppm) |
+| ------------- | ------------- | ------------- |
+| < 0.25 | 1.0 | 1.0|
+| 0.25 - 0.5 | 1.4 | 1.5 |
+| 0.5 - 0.75 | 1.9 | 2.3 |
+| 0.75 - 1.0 | 2.5 | 2.8 |
+| > 1.0 | 3.2 | 4.0 |
 
-The `methane.aev` file is also included to quickly check if this working properly on your machine. Furthermore, the `./xyz_to_aev` is also called when using `predict_shieldings.py` for new NMR shielding predictions.
 
+### XYZ to AEV Conversion
+The xyz to aev file conversion is carried out using the [torchani](https://github.com/aiqm/torchani/tree/master/torchani) python package. 
  
 
 <!---
