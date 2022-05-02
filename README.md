@@ -118,7 +118,6 @@ Please cite if using this software:
   year     =  2021,
   language = "en",
   issn     = "1549-9618, 1549-9626",
-  pmid     = "33428408",
   doi      = "10.1021/acs.jctc.0c00979"
 }
 
