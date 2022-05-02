@@ -104,18 +104,18 @@ The new training weights are saved as `.h5` files. Move these files to the corre
 # Citation
 Please cite if using this software:
 
-@ARTICLE{Unzueta2021-rx,
-  title    = "Predicting Density Functional {Theory-Quality} Nuclear Magnetic
-              Resonance Chemical Shifts via {$\Delta$-Machine} Learning",
-  author   = "Unzueta, Pablo A and Greenwell, Chandler S and Beran, Gregory J O",
-  journal  = "J. Chem. Theory Comput.",
-  volume   =  17,
-  number   =  2,
-  pages    = "826--840",
-  month    =  feb,
-  year     =  2021,
-  language = "en",
-  issn     = "1549-9618, 1549-9626",
-  pmid     = "33428408",
-  doi      = "10.1021/acs.jctc.0c00979"
-}
+  @ARTICLE{Unzueta2021-rx,
+    title    = "Predicting Density Functional {Theory-Quality} Nuclear Magnetic
+               Resonance Chemical Shifts via {$\Delta$-Machine} Learning",
+    author   = "Unzueta, Pablo A and Greenwell, Chandler S and Beran, Gregory J O",
+    journal  = "J. Chem. Theory Comput.",
+    volume   =  17,
+    number   =  2,
+    pages    = "826--840",
+    month    =  feb,
+    year     =  2021,
+    language = "en",
+    issn     = "1549-9618, 1549-9626",
+    pmid     = "33428408",
+    doi      = "10.1021/acs.jctc.0c00979"
+  }
