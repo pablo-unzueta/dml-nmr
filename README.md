@@ -10,11 +10,11 @@ This project was developed by Pablo Unzueta and Gregory Beran at UC Riverside. V
 # Installation
 
 ## Dependencies
-* Tensorflow (>= 2.0)
-* Numpy (>= 1.13.3)
-* Scikit-Learn (>= 0.23.2)
-* Pandas (>= 1.1.3)
-* Torchani (>= 2.2) 
+* tensorflow >= 2.0
+* numpy >= 1.13.3
+* Sklearn >= 0.23.2
+* pandas >= 1.1.3
+* torchani >= 2.2
 
 DML-NMR python scripts are written for **python3.7** or newer.
 ## User Installation
