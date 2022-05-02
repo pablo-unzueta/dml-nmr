@@ -5,7 +5,7 @@ Delta-Machine Learning Nuclear Magnetic Resonance (**DML-NMR**) is a set of pyth
   <img src="https://github.com/pablo-unzueta/dml-nmr/blob/main/images/nn_arch_and_ensemble_combined_large_font_cropped.svg">
 </p>
 
-This project was developed by Pablo Unzueta and Gregory Beran at UC Riverside. Visit our [group website](https://research.chem.ucr.edu/groups/beran/publications.html) for our full publication list.
+This project was developed by Pablo Unzueta and Gregory Beran at UC Riverside. Visit our [group website](https://beran.chem.ucr.edu/publications.html) for our full publication list.
 
 # Installation
 
