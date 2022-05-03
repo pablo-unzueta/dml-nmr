@@ -1,0 +1,7 @@
+Processing:
+  data_path: "data/"
+  atom_type: "13C" #13C, 1H, 15N, or 17O
+  dft: "pbe0" #aev, lda, pbe, or pbe0
+  basis: "631g" #sto3g or 631g
+  reprocess_aev: False
+  reprocess_shieldings: False
