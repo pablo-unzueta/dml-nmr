@@ -26,12 +26,6 @@ def main():
         help="Location of data containing structures (json or any other valid format) and accompanying files",
     )
     parser.add_argument(
-        "--atom_type",
-        default=None,
-        type=str,
-        help="13C, 1H, 15N, or 17O",
-    )
-    parser.add_argument(
         "--dft",
         default=None,
         type=str,
@@ -68,8 +62,6 @@ def main():
 
     if args.data_path != None:
         config["Processing"]["data_path"] = args.data_path
-    if args.atom_type != None:
-        config["Processing"]["atom_type"] = args.atom_type
     if args.dft != None:
         config["Processing"]["dft"] = args.atom_type
     if args.basis != None:
