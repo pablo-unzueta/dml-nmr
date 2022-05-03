@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: dml-nmr
-Version: 1.0
+Version: 1.1
 Summary: DML-NMR package for predicting accurate chemical shieldings
 Home-page: https://github.com/pablo-unzueta/dml-nmr
 Author: Pablo Unzueta
