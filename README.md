@@ -12,40 +12,26 @@ This project was developed by Pablo Unzueta and Gregory Beran at UC Riverside. V
 ## Dependencies
 * tensorflow >= 2.0
 * numpy >= 1.13.3
-* sklearn >= 0.23.2
+* Sklearn >= 0.23.2
 * pandas >= 1.1.3
 * torchani >= 2.2
 
 DML-NMR python scripts are written for **python3.7** or newer.
 ## User Installation
-The preferred method of installation is through `pip`:
-
-    pip install -U dml-nmr
-
-or one can simply download the source code and specify the python path.
-
-## Source Code
-Source code can be viewed with the following command:
+Source code can be downloaded with the following command:
 
     git clone https://github.com/pablo-unzueta/dml-nmr
 
 # Usage
 
 ## Examples
-Using **DML-NMR** is quite simple. The code simply acts on all *Gaussian09* output or `.log` files. For example, in a directory containing all the NMR *Gaussian09* `.log` files calculated at the PBE0/6-31G level of theory and basis set:
+Using **DML-NMR** is quite simple. The code simply acts on all *Gaussian09* output (`.log`) files in a directory. All options are controlled in the example **config.yml** file. Once all options are set, simply type:
 
-    from dmlnmr import ensemble_net
-    import os 
-    current_dir = os.getcwd()
+    python main.py
 
-    predict_shieldings = ensemble_net(atom='C', directory=current_dir)
-    predict_shieldings.run()
+This will produce `.dml` files for each corresponding `.log` file containing the new PBE0/6-311+G(2d,p) shielding predictions in the first column, and the standard deviation of the ensemble predictions in the second column. Please note that the only accepted atom types are `C` `H` `N` and `O`.
+The advantage of using an ensemble net allows one to examine the uncertainty between the individual members to assess the quality of the prediction. Please refer to our [paper](https://pubs.acs.org/doi/abs/10.1021/acs.jctc.0c00979) to examine the 95% confidence intervals per atom type.
 
-will produce `.dml` files for each corresponding `.log` file containing the new PBE0/6-311+G(2d,p) shielding predictions for every carbon atom. Accepted atom types are `C` `H` `N` and `O`
-
-If you have calculated chemical shieldings using a different density functional or basis set, you can change the arguments in the `ensemble_net()` function call:
-
-    predict_shieldings = ensemble_net(atom='C', dft='PBE', basis_set='STO-3G')
 
 Currently, we have trained nets for following density functionals:
 * `LDA`
@@ -56,23 +42,7 @@ And basis sets:
 * `STO-3G`
 * `6-31G`
 
-Lastly, the advantage of using an ensemble net allows one to examine the uncertainty between the individual members to assess the quality of the prediction. By using the following argument:
-
-    predict_shieldings = ensemble_net(atom='C', std=True)
-
-another set of files with the `.std` extension will be produced corresponding to the standard deviation of each new shielding prediction. Please refer to our paper(add link to paper) to examine the 95% confidence intervals per atom type.
-
-If you have downloaded the source code from github, you can use the driver `predict_shieldings.py` which acts on a directory of *Gaussian09* output or `.log` files. Using the following command in the `examples/predict/` directory will produce `.dml` files for each `.log` file.
-
-    python predict_shieldings.py
-
-If you wish to examine the uncertainties of each prediction, you can use:
-
-    python predict_shieldings.py --std=True 
-
-which will produce another set files with the `.std` extension corresponding the standard deviation from the ensemble nets of each prediction.
-
-We suggest using *PBE0/6-31G* for the baseline calculation and have included the ensemble uncertainties for this model per atom type. If the NMR calculations become a significant bottleneck, one can opt of the cheaper *PBE/6-31G* calculations which are roughly 30% cheaper as discussed in the paper.
+We suggest using *PBE0/6-31G* for the baseline calculation and have included the ensemble uncertainties below for this model per atom type. If the NMR calculations become a significant bottleneck, one can opt of the cheaper *PBE/6-31G* calculations which are roughly 30% cheaper as discussed in the paper.
 
  
 
@@ -87,22 +57,13 @@ We suggest using *PBE0/6-31G* for the baseline calculation and have included the
 
 
 ### XYZ to AEV Conversion
-The xyz to aev file conversion is carried out using the [torchani](https://github.com/aiqm/torchani) python package. 
- 
+The xyz to aev file conversion is carried out using the [torchani](https://github.com/aiqm/torchani) python package. It is highly recommended to only carry out this process once since generating AEV's can be time consuming for a large quantity of files. 
+Once the code has been ran once, please modify **config.yml** to the following: 
 
-<!---
-## Re-Training Neural Nets
-Neural networks were trained using the methods detailed in the publication. If you'd like to re-train the neural networks, then follow these steps.
-1. Download the pandas dataframe files hosted on [figshare](https://figshare.com/)
-2. Place these files in the `train/data/` directory
-3. Modify kfold_90_10.py training script with new training protocol
-4. Run using `python kfold_90_10.py > results.out`
-
-The new training weights are saved as `.h5` files. Move these files to the corresponding directory for your desired level of theory and basis set.
--->
+    reprocess_aev: False
 
 # Citation
-The paper can be found [here](https://pubs.acs.org/doi/abs/10.1021/acs.jctc.0c00979). Please cite if using this software:
+Please cite if using this software:
 
 ```
 
