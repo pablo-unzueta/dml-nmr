@@ -29,7 +29,7 @@ Using **DML-NMR** is quite simple. The code simply acts on all *Gaussian09* outp
 
     python main.py
 
-This will produce `.dml` files for each corresponding `.log` file containing the new PBE0/6-311+G(2d,p) shielding predictions in the first column, and the standard deviation of the ensemble predictions in the second column. Please note that the only accepted atom types are `C` `H` `N` and `O`.
+This will produce `.dml` files for each corresponding `.log` file containing the ML PBE0/6-311+G(2d,p) shielding predictions in the directory specified by **config.yml**. In the .dml file, the first column is the prediction, and the second contains the standard deviation of the ensemble predictions. Please note that the only accepted atom types are `C` `H` `N` and `O`.
 The advantage of using an ensemble net allows one to examine the uncertainty between the individual members to assess the quality of the prediction. Please refer to our [paper](https://pubs.acs.org/doi/abs/10.1021/acs.jctc.0c00979) to examine the 95% confidence intervals per atom type.
 
 
