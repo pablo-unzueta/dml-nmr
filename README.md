@@ -102,7 +102,7 @@ The new training weights are saved as `.h5` files. Move these files to the corre
 -->
 
 # Citation
-Please cite if using this software:
+The paper can be found [here](https://pubs.acs.org/doi/abs/10.1021/acs.jctc.0c00979). Please cite if using this software:
 
 ```
 
