@@ -12,7 +12,7 @@ This project was developed by Pablo Unzueta and Gregory Beran at UC Riverside. V
 ## Dependencies
 * tensorflow >= 2.0
 * numpy >= 1.13.3
-* Sklearn >= 0.23.2
+* sklearn >= 0.23.2
 * pandas >= 1.1.3
 * torchani >= 2.2
 
