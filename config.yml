@@ -1,5 +1,5 @@
 Processing:
-  data_path: "data/"
+  data_path: "data/" #location of log files
   dft: "pbe0" #aev, lda, pbe, or pbe0
   basis: "631g" #sto3g or 631g
   reprocess_aev: False
