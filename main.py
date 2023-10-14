@@ -5,6 +5,7 @@ import yaml
 from src import process
 from src import models
 
+
 def main():
     parser = argparse.ArgumentParser(description="DML-NMR inputs")
     parser.add_argument(
@@ -50,33 +51,33 @@ def main():
         help="Generate shieldings from gaussian .log files",
     )
 
-    ##Get arguments from command line
+    # Get arguments from command line
     args = parser.parse_args(sys.argv[1:])
 
-    ##Open provided config file
+    # Open provided config file
     assert os.path.exists(args.config_path), (
         "Config file not found in " + args.config_path
     )
     with open(args.config_path, "r") as ymlfile:
         config = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
-    if args.data_path != None:
+    if args.data_path is not None:
         config["Processing"]["data_path"] = args.data_path
-    if args.dft != None:
+    if args.dft is not None:
         config["Processing"]["dft"] = args.atom_type
-    if args.basis != None:
+    if args.basis is not None:
         config["Processing"]["basis"] = args.atom_type
-    if args.reprocess_aev != None:
+    if args.reprocess_aev is not None:
         config["Processing"]["reprocess_aev"] = args.reprocess_aev
-    if args.reprocess_shieldings != None:
+    if args.reprocess_shieldings is not None:
         config["Processing"]["reprocess_shieldings"] = args.shieldings
 
     if config["Processing"]["dft"] == "aev":
         model_path = os.path.join("src/saved_nets", config["Processing"]["dft"])
     else:
         model_path = os.path.join("src/saved_nets",
-                              config["Processing"]["dft"] + "_" +
-                              config["Processing"]["basis"])
+                                  config["Processing"]["dft"] + "_" +
+                                  config["Processing"]["basis"])
 
     config["Processing"]["model_path"] = model_path
 
@@ -90,7 +91,7 @@ def main():
     print(f'Loading model weights from {config["Processing"]["model_path"]}')
     print("------------------------------------------------")
 
-    model = models.ensemble_net(config)
+    model = models.EnsembleNet(config)
     model.calc_dml_nmr(config)
 
 
